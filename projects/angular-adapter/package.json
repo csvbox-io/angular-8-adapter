@@ -1,12 +1,12 @@
 {
   "name": "@csvbox/angular_8",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Angular 8 adapter for csvbox.io",
   "author": "csvbox-io",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/csvbox-io/angular-adapter.git"
+    "url": "git+https://github.com/csvbox-io/angular-8-adapter.git"
   },
   "peerDependencies": {
     "@angular/common": "^8.2.14",
@@ -32,9 +32,9 @@
     "csv to json"
   ],
   "bugs": {
-    "url": "https://github.com/csvbox-io/angular-adapter/issues"
+    "url": "https://github.com/csvbox-io/angular-8-adapter/issues"
   },
-  "homepage": "https://github.com/csvbox-io/angular-adapter#readme",
+  "homepage": "https://github.com/csvbox-io/angular-8-adapter#readme",
   "directories": {
     "example": "example"
   }
