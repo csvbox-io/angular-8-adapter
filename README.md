@@ -1,19 +1,19 @@
-# @csvbox/angular
+# @csvbox/angular_8
 
 > Angular 8 adapter for csvbox.io
 
-[![NPM](https://img.shields.io/npm/v/@csvbox/angular.svg)](https://www.npmjs.com/package/@csvbox/angular) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@csvbox/angular_8.svg)](https://www.npmjs.com/package/@csvbox/angular_8) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Shell
 
 ```bash
-npm install @csvbox/angular
+npm install @csvbox/angular_8
 ```
 
 ## Import
 Add `CSVBoxAngularModule` to your module imports
 ```ts
-import { CSVBoxAngularModule } from "@csvbox/angular";
+import { CSVBoxAngularModule } from "@csvbox/angular_8";
 
 @NgModule({
   ...
@@ -33,7 +33,7 @@ import { CSVBoxAngularModule } from "@csvbox/angular";
 ## Example
 
 ```ts
-import { CSVBoxMethods } from "@csvbox/angular"
+import { CSVBoxMethods } from "@csvbox/angular_8"
 
 @Component({
   selector: 'app-root',
