@@ -1,0 +1,41 @@
+{
+  "name": "@csvbox/angular_8",
+  "version": "0.0.1",
+  "description": "Angular 8 adapter for csvbox.io",
+  "author": "csvbox-io",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csvbox-io/angular-adapter.git"
+  },
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14"
+  },
+  "dependencies": {
+    "tslib": "^2.2.0"
+  },
+  "keywords": [
+    "csv",
+    "importer",
+    "uploader",
+    "csvbox",
+    "parser",
+    "csv-parse",
+    "excel",
+    "xls",
+    "csv import",
+    "csv upload",
+    "spreadsheet import",
+    "angular csv",
+    "csv parse",
+    "csv to json"
+  ],
+  "bugs": {
+    "url": "https://github.com/csvbox-io/angular-adapter/issues"
+  },
+  "homepage": "https://github.com/csvbox-io/angular-adapter#readme",
+  "directories": {
+    "example": "example"
+  }
+}
