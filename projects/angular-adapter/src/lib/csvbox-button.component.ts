@@ -5,7 +5,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   selector: 'csvbox-button',
   template: `
     <div>
-      <button (click)="openModal()">
+      <button data-csvbox (click)="openModal()">
         <ng-content></ng-content>
       </button>
       <div #holder class="holder">
@@ -43,6 +43,7 @@ export class CSVBoxButtonComponent implements OnInit {
   @ViewChild('iframe', {static: true}) iframe: any;
   @Input() onImport: Function;
   @Input() user: Object;
+  @Input() dynamicColumns: Object;
   @Input() licenseKey: String;
 
   safeUrl:SafeUrl;
@@ -54,6 +55,16 @@ export class CSVBoxButtonComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+
+    if(document.querySelector("[data-csvbox]") != null){
+      document.onreadystatechange = () => {
+          if (document.readyState === 'complete') {
+            (document.querySelector("[data-csvbox]") as HTMLButtonElement).disabled = false;
+          }else{
+            (document.querySelector("[data-csvbox]") as HTMLButtonElement).disabled = true;
+          }
+      };
+    }
 
     window.addEventListener("message", (event) => {
       if (event.data === "mainModalHidden") {
@@ -81,11 +92,17 @@ export class CSVBoxButtonComponent implements OnInit {
 
     let iframe = this.iframe.nativeElement;
     let user = this.user;
+    let dynamicColumns = this.dynamicColumns;
 
     iframe.onload = function () {
       if(user) {
         iframe.contentWindow.postMessage({
           "customer" : user
+        }, "*");
+      }
+      if(dynamicColumns){
+        iframe.contentWindow.postMessage({
+          "columns" : dynamicColumns
         }, "*");
       }
     }
