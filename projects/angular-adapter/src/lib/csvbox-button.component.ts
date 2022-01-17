@@ -45,6 +45,7 @@ export class CSVBoxButtonComponent implements OnInit {
   @Input() user: Object;
   @Input() dynamicColumns: Object;
   @Input() licenseKey: String;
+  @Input() options: Object;
 
   safeUrl:SafeUrl;
 
@@ -69,7 +70,6 @@ export class CSVBoxButtonComponent implements OnInit {
     window.addEventListener("message", (event) => {
       if (event.data === "mainModalHidden") {
           this.holder.nativeElement.style.display = 'none';
-          this.holder.nativeElement.querySelector('iframe').src = this.holder.nativeElement.querySelector('iframe').src;
           this.isModalShown = false;
       }
       if(event.data === "uploadSuccessful") {
@@ -80,12 +80,11 @@ export class CSVBoxButtonComponent implements OnInit {
       }
       if(typeof event.data == "object") {
           if(event.data.type && event.data.type == "data-push-status") {
-              if(event.data.data.import_status = "success"){
-                this.onImport(true, event.data.data);
-              }else {
-                this.onImport(false, event.data.data);
-              }
-
+            if(event.data.data.import_status = "success"){
+              this.onImport(true, event.data.data);
+            }else {
+              this.onImport(false, event.data.data);
+            }
           }
       }
     }, false);
@@ -93,6 +92,7 @@ export class CSVBoxButtonComponent implements OnInit {
     let iframe = this.iframe.nativeElement;
     let user = this.user;
     let dynamicColumns = this.dynamicColumns;
+    let options = this.options;
 
     iframe.onload = function () {
       if(user) {
@@ -103,6 +103,11 @@ export class CSVBoxButtonComponent implements OnInit {
       if(dynamicColumns){
         iframe.contentWindow.postMessage({
           "columns" : dynamicColumns
+        }, "*");
+      }
+      if(options) {
+        iframe.contentWindow.postMessage({
+          "options" : options
         }, "*");
       }
     }
