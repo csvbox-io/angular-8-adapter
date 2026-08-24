@@ -10,10 +10,12 @@
   },
   "peerDependencies": {
     "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14"
+    "@angular/core": "^8.2.14",
+    "@angular/platform-browser": "^8.2.14"
   },
   "dependencies": {
-    "tslib": "^2.2.0"
+    "tslib": "^2.2.0",
+    "@csvbox/adapter": "^0.0.1"
   },
   "keywords": [
     "csv",
@@ -34,8 +36,5 @@
   "bugs": {
     "url": "https://github.com/csvbox-io/angular-8-adapter/issues"
   },
-  "homepage": "https://github.com/csvbox-io/angular-8-adapter#readme",
-  "directories": {
-    "example": "example"
-  }
+  "homepage": "https://github.com/csvbox-io/angular-8-adapter#readme"
 }
