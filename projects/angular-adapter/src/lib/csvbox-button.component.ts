@@ -72,6 +72,7 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 	holder: any;
 	lifecycle = createModalLifecycle();
 	private messageGate = createMessageGate();
+	private closeReported = false;
 	private importTracker = createImportTracker();
 
 	isModalShown: boolean = false;
@@ -179,6 +180,7 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 				// a second file declined while the first was still opening the modal has put the
 				// holder away in the meantime.
 				this.isModalShown = true;
+				this.closeReported = false;
 				this.lifecycle.requestOpen();
 				if (this.holder) {
 					this.holder.style.display = 'block';
@@ -258,6 +260,11 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 	}
 
 	handleModalClosed(): void {
+		// A repeated close message must not call onClose a second time. The flag is cleared when the importer is opened again.
+		if (this.closeReported) {
+			return;
+		}
+		this.closeReported = true;
 		if (this.importTracker.isInFlight()) {
 			// Closed after submitting and before the result arrived: keep the iframe and its listener
 			// so the late result still reaches onImport. It is removed once that result has been
@@ -307,6 +314,7 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 		this.uuid = generateUuid();
 		this.messageGate.reset();
 		this.importTracker.reset();
+		this.closeReported = false;
 
 		insertCSS();
 
@@ -346,6 +354,7 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 		// Counts as open from the moment it is requested, so the other buttons are disabled while
 		// this importer is still loading, and so it is stacked above any importer opened earlier.
 		registerOpenImporter(this.registryEntry);
+		this.closeReported = false;
 		if (!this.iframe) {
 			this.lifecycle.requestOpen();
 			this.initImporter();
