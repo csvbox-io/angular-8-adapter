@@ -107,6 +107,11 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 
 	ngOnInit(): void {
 		this.uuid = generateUuid();
+		this.refreshImportUrl();
+	}
+
+	// Also run on every open of the importer, so a licenseKey, language or theme the parent changed after mount is used.
+	private refreshImportUrl(): void {
 		let iframeUrl = buildImportUrl(
 			{
 				licenseKey: this.licenseKey,
@@ -319,6 +324,7 @@ export class CSVBoxButtonComponent implements OnInit, OnChanges, AfterContentIni
 	}
 
 	initImporter() {
+		this.refreshImportUrl();
 		if (this.loadStarted) this.loadStarted();
 
 		this.uuid = generateUuid();
